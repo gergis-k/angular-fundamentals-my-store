@@ -4,7 +4,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## Configuration
 
-Run `npm install` at the root directory of the "angular-fundamentals-my-store" project (<project_directory>/my-store-app)
+Run `npm install` at the root directory of the "angular-fundamentals-my-store"
 
 ## Development server
 
