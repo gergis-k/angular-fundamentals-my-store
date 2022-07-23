@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'nd-0067-c3-angular-fundamentals-project-starter';
+  title = 'MyStroe';
 }

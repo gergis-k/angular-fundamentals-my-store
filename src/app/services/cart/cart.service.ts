@@ -1,45 +1,49 @@
 import { Injectable } from '@angular/core';
-import Product from 'src/app/models/product';
+import Item from 'src/app/models/item';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
 
-  products: Product[] = [];
-  Total: number = 0;
-  reciptTotal: number = 0;
+  items: Item[] = [];
 
   constructor() { }
 
-  getProducts(): Product[] {
-    return this.products;
+  getItems(): Item[] {
+    return this.items;
   }
 
-  getReciptTotal(): number {
-    return this.reciptTotal;
+  addItem(item: Item): Item[] {
+    let i = this.items.findIndex(p => p.product.name === item.product.name);
+    if (i === -1) {
+      this.items.push(item);
+    }
+    else {
+      this.items.splice(i, 1);
+      this.items.push(item);
+    }
+    return this.items;
   }
 
-  addProduct(product: Product): void {
-    this.products.push(product);
-    this.calcTotal();
-  }
-
-  removeProduct(product: Product): void {
-    this.products = this.products.filter(p => p.id !== product.id);
-    if (this.products.length === 0)
-      this.Total = 0;
-    alert(`${product.name} removed.`);
+  removeItem(item: Item): Item[] {
+    let i = this.items.findIndex(p => p.product.name === item.product.name);
+    if (i !== -1) {
+      this.items.splice(i, 1);
+    }
+    return this.items;
   }
 
   calcTotal(): number {
-    if (this.products.length === 0)
-      return this.Total;
-    this.products.forEach(p => {
-      this.Total = p.quantity * p.price;
-    }
-    );
-    this.reciptTotal += this.Total;
-    return this.reciptTotal;
+    let total = 0;
+    this.items.forEach(item => {
+      total += item.product.price * item.quantity;
+    });
+    return total;
+  }
+
+  resetCart(): Item[] {
+    this.items = [];
+    return this.items;
   }
 }

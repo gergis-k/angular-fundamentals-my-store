@@ -14,7 +14,7 @@ export class NavBarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  trigger(component: string) {
+  trigger(component: string): void {
     this.currentComponent = component;
   }
 
