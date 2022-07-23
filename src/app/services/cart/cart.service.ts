@@ -7,6 +7,7 @@ import Item from 'src/app/models/item';
 export class CartService {
 
   items: Item[] = [];
+  fullName: string = '';
 
   constructor() { }
 
@@ -20,8 +21,7 @@ export class CartService {
       this.items.push(item);
     }
     else {
-      this.items.splice(i, 1);
-      this.items.push(item);
+      this.items[i].quantity = Number(this.items[i].quantity) + Number(item.quantity);
     }
     return this.items;
   }
@@ -32,6 +32,14 @@ export class CartService {
       this.items.splice(i, 1);
     }
     return this.items;
+  }
+
+  getFullName(): string {
+    return this.fullName;
+  }
+
+  setFullName(name: string): void {
+    this.fullName = name;
   }
 
   calcTotal(): number {

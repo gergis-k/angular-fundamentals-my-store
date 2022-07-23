@@ -23,7 +23,6 @@ export class ProductListComponent implements OnInit {
 
   addToCart(item: Item) {
     this.cartS.addItem(item);
-    alert(`Item ${item.product.name} added to cart!`);
   }
 
 }

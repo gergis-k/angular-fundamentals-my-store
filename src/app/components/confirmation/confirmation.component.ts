@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { CartService } from 'src/app/services/cart/cart.service';
 
 @Component({
   selector: 'app-confirmation',
@@ -7,9 +9,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ConfirmationComponent implements OnInit {
 
-  constructor() { }
+  totalPrice: number = 0;
+  fullName: string = '';
+
+  constructor(private cartService: CartService) { }
 
   ngOnInit(): void {
+    this.totalPrice = this.cartService.calcTotal();
+    this.fullName = this.cartService.getFullName();
   }
 
 }

@@ -14,15 +14,16 @@ export class ProductItemComponent implements OnInit {
   @Output() added = new EventEmitter()
 
   quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  quantity: number;
+  quantity: number = 1;
 
-  constructor(private router: Router) { this.quantity = 1; }
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
 
   addItem(product: Product) {
     this.added.emit(new Item(product, this.quantity));
+    alert(`${product.name} added.`);
   }
 
 }
